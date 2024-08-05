@@ -67,10 +67,12 @@ func (r *Report) Save(format v1alpha2.ReportFormatType, path, name string) error
 	case v1alpha2.XMLFormat:
 		return saveJUnit(r, filePath)
 	case v1alpha2.JSONFormat:
+		return saveJson(r, filePath)
+	case v1alpha2.CSVFormat:
+		return saveCsv(r, filePath)
 	default:
 		return fmt.Errorf("unknown report format: %s", format)
 	}
-	return nil
 }
 
 type TestReport struct {

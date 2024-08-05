@@ -5,9 +5,9 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/jedib0t/go-pretty/table"
 	"github.com/jmespath/go-jmespath"
 	"github.com/kyverno/chainsaw/pkg/engine/functions/tracectx"
+	"github.com/kyverno/chainsaw/pkg/utils/table"
 	"io"
 	"k8s.io/apimachinery/pkg/api/resource"
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
@@ -326,7 +326,7 @@ func tableFormat(arguments []any) (any, error) {
 		}
 	}
 
-	fmt.Printf("\n%s\n", TableRenderWithName("", []string{"name", "status"}, desc))
+	fmt.Printf("\n%s\n", table.RenderWithName("", []string{"name", "status"}, desc))
 	return "", nil
 }
 
@@ -347,28 +347,4 @@ func addSingleItem(item interface{}, path string) []interface{} {
 	}
 	marshal, _ := json.MarshalIndent(itemMap["status"], "", " ")
 	return []interface{}{name, string(marshal)}
-}
-
-func TableRenderWithName(name string, header []string, rows [][]interface{}) string {
-	t := table.NewWriter()
-	t.Style().Options = table.OptionsNoBordersAndSeparators
-	if len(header) > 0 {
-		new_header := convertToInterface(header...)
-		new_header[0] = name
-		t.AppendHeader(new_header)
-	}
-	for i, row := range rows {
-		new_row := []interface{}{i}
-		new_row = append(new_row, row...)
-		t.AppendRow(new_row)
-	}
-	return t.Render()
-}
-
-func convertToInterface(t ...string) []interface{} {
-	s := make([]interface{}, len(t)+1)
-	for i, v := range t {
-		s[i+1] = v
-	}
-	return s
 }

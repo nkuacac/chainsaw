@@ -97,13 +97,14 @@ type ReportFormatType string
 const (
 	JSONFormat ReportFormatType = "JSON"
 	XMLFormat  ReportFormatType = "XML"
+	CSVFormat  ReportFormatType = "CSV"
 )
 
 // ReportOptions contains the configuration used for reporting.
 type ReportOptions struct {
-	// ReportFormat determines test report format (JSON|XML).
+	// ReportFormat determines test report format (JSON|XML|CSV).
 	// +optional
-	// +kubebuilder:validation:Enum:=JSON;XML
+	// +kubebuilder:validation:Enum:=JSON;XML;CSV
 	// +kubebuilder:default:="JSON"
 	Format ReportFormatType `json:"format,omitempty"`
 
