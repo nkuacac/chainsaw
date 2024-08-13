@@ -1,6 +1,7 @@
 package engine
 
 import (
+	skutil "code.byted.org/inf/superkruise/pkg/superkruiseutil"
 	"context"
 	"path/filepath"
 
@@ -22,9 +23,17 @@ func WithBindings(ctx context.Context, tc Context, variables ...v1alpha1.Binding
 
 func WithClusters(ctx context.Context, tc Context, basePath string, c map[string]v1alpha1.Cluster) Context {
 	for name, cluster := range c {
-		kubeconfig := filepath.Join(basePath, cluster.Kubeconfig)
-		cluster := clusters.NewClusterFromKubeconfig(kubeconfig, cluster.Context)
-		tc = tc.WithCluster(ctx, name, cluster)
+		if len(cluster.VClusterName) > 0 && len(cluster.VClusterNameSpace) > 0 {
+			ck, err := WithVCluster(ctx, cluster.VClusterName, cluster.VClusterNameSpace)
+			if err != nil {
+				panic(err)
+			}
+			tc = tc.WithCluster(ctx, name, ck)
+		} else {
+			kubeconfig := filepath.Join(basePath, cluster.Kubeconfig)
+			cluster := clusters.NewClusterFromKubeconfig(kubeconfig, cluster.Context)
+			tc = tc.WithCluster(ctx, name, cluster)
+		}
 	}
 	return tc
 }
@@ -46,4 +55,13 @@ func WithNamespace(ctx context.Context, tc Context, namespace string) Context {
 
 func WithValues(ctx context.Context, tc Context, values any) Context {
 	return tc.WithBinding(ctx, "values", values)
+}
+
+func WithVCluster(ctx context.Context, name, namespace string) (clusters.Cluster, error) {
+	cfg, err := skutil.GetRestConfig(ctx, skutil.SecretNamePrefix+name, namespace)
+	if err != nil {
+		return nil, err
+	}
+
+	return clusters.NewClusterFromConfig(cfg)
 }

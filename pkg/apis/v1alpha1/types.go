@@ -49,6 +49,12 @@ type Cluster struct {
 	// Context is the name of the context to use.
 	// +optional
 	Context string `json:"context,omitempty"`
+	// VClusterName is the name of the virtual cluster to use.
+	// +optional
+	VClusterName string `json:"vClusterName,omitempty"`
+	// VClusterNameSpace is the namespace of the virtual cluster to use.
+	// +optional
+	VClusterNameSpace string `json:"vClusterNameSpace,omitempty"`
 }
 
 // Clusters defines a cluster map.

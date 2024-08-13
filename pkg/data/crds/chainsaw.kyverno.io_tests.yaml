@@ -123,6 +123,10 @@ spec:
                           additionalProperties:
                             description: Cluster defines cluster config and context.
                             properties:
+                              VClusterNameSpace:
+                                description: VClusterNameSpace is the namespace of
+                                  the virtual cluster to use.
+                                type: string
                               context:
                                 description: Context is the name of the context to
                                   use.
@@ -130,6 +134,10 @@ spec:
                               kubeconfig:
                                 description: Kubeconfig is the path to the referenced
                                   file.
+                                type: string
+                              vClusterName:
+                                description: VClusterName is the name of the virtual
+                                  cluster to use.
                                 type: string
                             required:
                             - kubeconfig
@@ -225,6 +233,10 @@ spec:
                           additionalProperties:
                             description: Cluster defines cluster config and context.
                             properties:
+                              VClusterNameSpace:
+                                description: VClusterNameSpace is the namespace of
+                                  the virtual cluster to use.
+                                type: string
                               context:
                                 description: Context is the name of the context to
                                   use.
@@ -232,6 +244,10 @@ spec:
                               kubeconfig:
                                 description: Kubeconfig is the path to the referenced
                                   file.
+                                type: string
+                              vClusterName:
+                                description: VClusterName is the name of the virtual
+                                  cluster to use.
                                 type: string
                             required:
                             - kubeconfig
@@ -333,6 +349,10 @@ spec:
                           additionalProperties:
                             description: Cluster defines cluster config and context.
                             properties:
+                              VClusterNameSpace:
+                                description: VClusterNameSpace is the namespace of
+                                  the virtual cluster to use.
+                                type: string
                               context:
                                 description: Context is the name of the context to
                                   use.
@@ -340,6 +360,10 @@ spec:
                               kubeconfig:
                                 description: Kubeconfig is the path to the referenced
                                   file.
+                                type: string
+                              vClusterName:
+                                description: VClusterName is the name of the virtual
+                                  cluster to use.
                                 type: string
                             required:
                             - kubeconfig
@@ -395,6 +419,10 @@ spec:
                           additionalProperties:
                             description: Cluster defines cluster config and context.
                             properties:
+                              VClusterNameSpace:
+                                description: VClusterNameSpace is the namespace of
+                                  the virtual cluster to use.
+                                type: string
                               context:
                                 description: Context is the name of the context to
                                   use.
@@ -402,6 +430,10 @@ spec:
                               kubeconfig:
                                 description: Kubeconfig is the path to the referenced
                                   file.
+                                type: string
+                              vClusterName:
+                                description: VClusterName is the name of the virtual
+                                  cluster to use.
                                 type: string
                             required:
                             - kubeconfig
@@ -450,6 +482,10 @@ spec:
                           additionalProperties:
                             description: Cluster defines cluster config and context.
                             properties:
+                              VClusterNameSpace:
+                                description: VClusterNameSpace is the namespace of
+                                  the virtual cluster to use.
+                                type: string
                               context:
                                 description: Context is the name of the context to
                                   use.
@@ -457,6 +493,10 @@ spec:
                               kubeconfig:
                                 description: Kubeconfig is the path to the referenced
                                   file.
+                                type: string
+                              vClusterName:
+                                description: VClusterName is the name of the virtual
+                                  cluster to use.
                                 type: string
                             required:
                             - kubeconfig
@@ -510,6 +550,10 @@ spec:
                           additionalProperties:
                             description: Cluster defines cluster config and context.
                             properties:
+                              VClusterNameSpace:
+                                description: VClusterNameSpace is the namespace of
+                                  the virtual cluster to use.
+                                type: string
                               context:
                                 description: Context is the name of the context to
                                   use.
@@ -517,6 +561,10 @@ spec:
                               kubeconfig:
                                 description: Kubeconfig is the path to the referenced
                                   file.
+                                type: string
+                              vClusterName:
+                                description: VClusterName is the name of the virtual
+                                  cluster to use.
                                 type: string
                             required:
                             - kubeconfig
@@ -586,6 +634,10 @@ spec:
                           additionalProperties:
                             description: Cluster defines cluster config and context.
                             properties:
+                              VClusterNameSpace:
+                                description: VClusterNameSpace is the namespace of
+                                  the virtual cluster to use.
+                                type: string
                               context:
                                 description: Context is the name of the context to
                                   use.
@@ -593,6 +645,10 @@ spec:
                               kubeconfig:
                                 description: Kubeconfig is the path to the referenced
                                   file.
+                                type: string
+                              vClusterName:
+                                description: VClusterName is the name of the virtual
+                                  cluster to use.
                                 type: string
                             required:
                             - kubeconfig
@@ -682,6 +738,10 @@ spec:
                           additionalProperties:
                             description: Cluster defines cluster config and context.
                             properties:
+                              VClusterNameSpace:
+                                description: VClusterNameSpace is the namespace of
+                                  the virtual cluster to use.
+                                type: string
                               context:
                                 description: Context is the name of the context to
                                   use.
@@ -689,6 +749,10 @@ spec:
                               kubeconfig:
                                 description: Kubeconfig is the path to the referenced
                                   file.
+                                type: string
+                              vClusterName:
+                                description: VClusterName is the name of the virtual
+                                  cluster to use.
                                 type: string
                             required:
                             - kubeconfig
@@ -777,11 +841,19 @@ spec:
                 additionalProperties:
                   description: Cluster defines cluster config and context.
                   properties:
+                    VClusterNameSpace:
+                      description: VClusterNameSpace is the namespace of the virtual
+                        cluster to use.
+                      type: string
                     context:
                       description: Context is the name of the context to use.
                       type: string
                     kubeconfig:
                       description: Kubeconfig is the path to the referenced file.
+                      type: string
+                    vClusterName:
+                      description: VClusterName is the name of the virtual cluster
+                        to use.
                       type: string
                   required:
                   - kubeconfig
@@ -961,6 +1033,10 @@ spec:
                                   description: Cluster defines cluster config and
                                     context.
                                   properties:
+                                    VClusterNameSpace:
+                                      description: VClusterNameSpace is the namespace
+                                        of the virtual cluster to use.
+                                      type: string
                                     context:
                                       description: Context is the name of the context
                                         to use.
@@ -968,6 +1044,10 @@ spec:
                                     kubeconfig:
                                       description: Kubeconfig is the path to the referenced
                                         file.
+                                      type: string
+                                    vClusterName:
+                                      description: VClusterName is the name of the
+                                        virtual cluster to use.
                                       type: string
                                   required:
                                   - kubeconfig
@@ -1066,6 +1146,10 @@ spec:
                                   description: Cluster defines cluster config and
                                     context.
                                   properties:
+                                    VClusterNameSpace:
+                                      description: VClusterNameSpace is the namespace
+                                        of the virtual cluster to use.
+                                      type: string
                                     context:
                                       description: Context is the name of the context
                                         to use.
@@ -1073,6 +1157,10 @@ spec:
                                     kubeconfig:
                                       description: Kubeconfig is the path to the referenced
                                         file.
+                                      type: string
+                                    vClusterName:
+                                      description: VClusterName is the name of the
+                                        virtual cluster to use.
                                       type: string
                                   required:
                                   - kubeconfig
@@ -1177,6 +1265,10 @@ spec:
                                   description: Cluster defines cluster config and
                                     context.
                                   properties:
+                                    VClusterNameSpace:
+                                      description: VClusterNameSpace is the namespace
+                                        of the virtual cluster to use.
+                                      type: string
                                     context:
                                       description: Context is the name of the context
                                         to use.
@@ -1184,6 +1276,10 @@ spec:
                                     kubeconfig:
                                       description: Kubeconfig is the path to the referenced
                                         file.
+                                      type: string
+                                    vClusterName:
+                                      description: VClusterName is the name of the
+                                        virtual cluster to use.
                                       type: string
                                   required:
                                   - kubeconfig
@@ -1242,6 +1338,10 @@ spec:
                                   description: Cluster defines cluster config and
                                     context.
                                   properties:
+                                    VClusterNameSpace:
+                                      description: VClusterNameSpace is the namespace
+                                        of the virtual cluster to use.
+                                      type: string
                                     context:
                                       description: Context is the name of the context
                                         to use.
@@ -1249,6 +1349,10 @@ spec:
                                     kubeconfig:
                                       description: Kubeconfig is the path to the referenced
                                         file.
+                                      type: string
+                                    vClusterName:
+                                      description: VClusterName is the name of the
+                                        virtual cluster to use.
                                       type: string
                                   required:
                                   - kubeconfig
@@ -1299,6 +1403,10 @@ spec:
                                   description: Cluster defines cluster config and
                                     context.
                                   properties:
+                                    VClusterNameSpace:
+                                      description: VClusterNameSpace is the namespace
+                                        of the virtual cluster to use.
+                                      type: string
                                     context:
                                       description: Context is the name of the context
                                         to use.
@@ -1306,6 +1414,10 @@ spec:
                                     kubeconfig:
                                       description: Kubeconfig is the path to the referenced
                                         file.
+                                      type: string
+                                    vClusterName:
+                                      description: VClusterName is the name of the
+                                        virtual cluster to use.
                                       type: string
                                   required:
                                   - kubeconfig
@@ -1361,6 +1473,10 @@ spec:
                                   description: Cluster defines cluster config and
                                     context.
                                   properties:
+                                    VClusterNameSpace:
+                                      description: VClusterNameSpace is the namespace
+                                        of the virtual cluster to use.
+                                      type: string
                                     context:
                                       description: Context is the name of the context
                                         to use.
@@ -1368,6 +1484,10 @@ spec:
                                     kubeconfig:
                                       description: Kubeconfig is the path to the referenced
                                         file.
+                                      type: string
+                                    vClusterName:
+                                      description: VClusterName is the name of the
+                                        virtual cluster to use.
                                       type: string
                                   required:
                                   - kubeconfig
@@ -1438,6 +1558,10 @@ spec:
                                   description: Cluster defines cluster config and
                                     context.
                                   properties:
+                                    VClusterNameSpace:
+                                      description: VClusterNameSpace is the namespace
+                                        of the virtual cluster to use.
+                                      type: string
                                     context:
                                       description: Context is the name of the context
                                         to use.
@@ -1445,6 +1569,10 @@ spec:
                                     kubeconfig:
                                       description: Kubeconfig is the path to the referenced
                                         file.
+                                      type: string
+                                    vClusterName:
+                                      description: VClusterName is the name of the
+                                        virtual cluster to use.
                                       type: string
                                   required:
                                   - kubeconfig
@@ -1536,6 +1664,10 @@ spec:
                                   description: Cluster defines cluster config and
                                     context.
                                   properties:
+                                    VClusterNameSpace:
+                                      description: VClusterNameSpace is the namespace
+                                        of the virtual cluster to use.
+                                      type: string
                                     context:
                                       description: Context is the name of the context
                                         to use.
@@ -1543,6 +1675,10 @@ spec:
                                     kubeconfig:
                                       description: Kubeconfig is the path to the referenced
                                         file.
+                                      type: string
+                                    vClusterName:
+                                      description: VClusterName is the name of the
+                                        virtual cluster to use.
                                       type: string
                                   required:
                                   - kubeconfig
@@ -1690,6 +1826,10 @@ spec:
                                   description: Cluster defines cluster config and
                                     context.
                                   properties:
+                                    VClusterNameSpace:
+                                      description: VClusterNameSpace is the namespace
+                                        of the virtual cluster to use.
+                                      type: string
                                     context:
                                       description: Context is the name of the context
                                         to use.
@@ -1697,6 +1837,10 @@ spec:
                                     kubeconfig:
                                       description: Kubeconfig is the path to the referenced
                                         file.
+                                      type: string
+                                    vClusterName:
+                                      description: VClusterName is the name of the
+                                        virtual cluster to use.
                                       type: string
                                   required:
                                   - kubeconfig
@@ -1795,6 +1939,10 @@ spec:
                                   description: Cluster defines cluster config and
                                     context.
                                   properties:
+                                    VClusterNameSpace:
+                                      description: VClusterNameSpace is the namespace
+                                        of the virtual cluster to use.
+                                      type: string
                                     context:
                                       description: Context is the name of the context
                                         to use.
@@ -1802,6 +1950,10 @@ spec:
                                     kubeconfig:
                                       description: Kubeconfig is the path to the referenced
                                         file.
+                                      type: string
+                                    vClusterName:
+                                      description: VClusterName is the name of the
+                                        virtual cluster to use.
                                       type: string
                                   required:
                                   - kubeconfig
@@ -1906,6 +2058,10 @@ spec:
                                   description: Cluster defines cluster config and
                                     context.
                                   properties:
+                                    VClusterNameSpace:
+                                      description: VClusterNameSpace is the namespace
+                                        of the virtual cluster to use.
+                                      type: string
                                     context:
                                       description: Context is the name of the context
                                         to use.
@@ -1913,6 +2069,10 @@ spec:
                                     kubeconfig:
                                       description: Kubeconfig is the path to the referenced
                                         file.
+                                      type: string
+                                    vClusterName:
+                                      description: VClusterName is the name of the
+                                        virtual cluster to use.
                                       type: string
                                   required:
                                   - kubeconfig
@@ -1971,6 +2131,10 @@ spec:
                                   description: Cluster defines cluster config and
                                     context.
                                   properties:
+                                    VClusterNameSpace:
+                                      description: VClusterNameSpace is the namespace
+                                        of the virtual cluster to use.
+                                      type: string
                                     context:
                                       description: Context is the name of the context
                                         to use.
@@ -1978,6 +2142,10 @@ spec:
                                     kubeconfig:
                                       description: Kubeconfig is the path to the referenced
                                         file.
+                                      type: string
+                                    vClusterName:
+                                      description: VClusterName is the name of the
+                                        virtual cluster to use.
                                       type: string
                                   required:
                                   - kubeconfig
@@ -2028,6 +2196,10 @@ spec:
                                   description: Cluster defines cluster config and
                                     context.
                                   properties:
+                                    VClusterNameSpace:
+                                      description: VClusterNameSpace is the namespace
+                                        of the virtual cluster to use.
+                                      type: string
                                     context:
                                       description: Context is the name of the context
                                         to use.
@@ -2035,6 +2207,10 @@ spec:
                                     kubeconfig:
                                       description: Kubeconfig is the path to the referenced
                                         file.
+                                      type: string
+                                    vClusterName:
+                                      description: VClusterName is the name of the
+                                        virtual cluster to use.
                                       type: string
                                   required:
                                   - kubeconfig
@@ -2090,6 +2266,10 @@ spec:
                                   description: Cluster defines cluster config and
                                     context.
                                   properties:
+                                    VClusterNameSpace:
+                                      description: VClusterNameSpace is the namespace
+                                        of the virtual cluster to use.
+                                      type: string
                                     context:
                                       description: Context is the name of the context
                                         to use.
@@ -2097,6 +2277,10 @@ spec:
                                     kubeconfig:
                                       description: Kubeconfig is the path to the referenced
                                         file.
+                                      type: string
+                                    vClusterName:
+                                      description: VClusterName is the name of the
+                                        virtual cluster to use.
                                       type: string
                                   required:
                                   - kubeconfig
@@ -2167,6 +2351,10 @@ spec:
                                   description: Cluster defines cluster config and
                                     context.
                                   properties:
+                                    VClusterNameSpace:
+                                      description: VClusterNameSpace is the namespace
+                                        of the virtual cluster to use.
+                                      type: string
                                     context:
                                       description: Context is the name of the context
                                         to use.
@@ -2174,6 +2362,10 @@ spec:
                                     kubeconfig:
                                       description: Kubeconfig is the path to the referenced
                                         file.
+                                      type: string
+                                    vClusterName:
+                                      description: VClusterName is the name of the
+                                        virtual cluster to use.
                                       type: string
                                   required:
                                   - kubeconfig
@@ -2265,6 +2457,10 @@ spec:
                                   description: Cluster defines cluster config and
                                     context.
                                   properties:
+                                    VClusterNameSpace:
+                                      description: VClusterNameSpace is the namespace
+                                        of the virtual cluster to use.
+                                      type: string
                                     context:
                                       description: Context is the name of the context
                                         to use.
@@ -2272,6 +2468,10 @@ spec:
                                     kubeconfig:
                                       description: Kubeconfig is the path to the referenced
                                         file.
+                                      type: string
+                                    vClusterName:
+                                      description: VClusterName is the name of the
+                                        virtual cluster to use.
                                       type: string
                                   required:
                                   - kubeconfig
@@ -2361,12 +2561,20 @@ spec:
                       additionalProperties:
                         description: Cluster defines cluster config and context.
                         properties:
+                          VClusterNameSpace:
+                            description: VClusterNameSpace is the namespace of the
+                              virtual cluster to use.
+                            type: string
                           context:
                             description: Context is the name of the context to use.
                             type: string
                           kubeconfig:
                             description: Kubeconfig is the path to the referenced
                               file.
+                            type: string
+                          vClusterName:
+                            description: VClusterName is the name of the virtual cluster
+                              to use.
                             type: string
                         required:
                         - kubeconfig
@@ -2454,6 +2662,10 @@ spec:
                                   description: Cluster defines cluster config and
                                     context.
                                   properties:
+                                    VClusterNameSpace:
+                                      description: VClusterNameSpace is the namespace
+                                        of the virtual cluster to use.
+                                      type: string
                                     context:
                                       description: Context is the name of the context
                                         to use.
@@ -2461,6 +2673,10 @@ spec:
                                     kubeconfig:
                                       description: Kubeconfig is the path to the referenced
                                         file.
+                                      type: string
+                                    vClusterName:
+                                      description: VClusterName is the name of the
+                                        virtual cluster to use.
                                       type: string
                                   required:
                                   - kubeconfig
@@ -2559,6 +2775,10 @@ spec:
                                   description: Cluster defines cluster config and
                                     context.
                                   properties:
+                                    VClusterNameSpace:
+                                      description: VClusterNameSpace is the namespace
+                                        of the virtual cluster to use.
+                                      type: string
                                     context:
                                       description: Context is the name of the context
                                         to use.
@@ -2566,6 +2786,10 @@ spec:
                                     kubeconfig:
                                       description: Kubeconfig is the path to the referenced
                                         file.
+                                      type: string
+                                    vClusterName:
+                                      description: VClusterName is the name of the
+                                        virtual cluster to use.
                                       type: string
                                   required:
                                   - kubeconfig
@@ -2670,6 +2894,10 @@ spec:
                                   description: Cluster defines cluster config and
                                     context.
                                   properties:
+                                    VClusterNameSpace:
+                                      description: VClusterNameSpace is the namespace
+                                        of the virtual cluster to use.
+                                      type: string
                                     context:
                                       description: Context is the name of the context
                                         to use.
@@ -2677,6 +2905,10 @@ spec:
                                     kubeconfig:
                                       description: Kubeconfig is the path to the referenced
                                         file.
+                                      type: string
+                                    vClusterName:
+                                      description: VClusterName is the name of the
+                                        virtual cluster to use.
                                       type: string
                                   required:
                                   - kubeconfig
@@ -2735,6 +2967,10 @@ spec:
                                   description: Cluster defines cluster config and
                                     context.
                                   properties:
+                                    VClusterNameSpace:
+                                      description: VClusterNameSpace is the namespace
+                                        of the virtual cluster to use.
+                                      type: string
                                     context:
                                       description: Context is the name of the context
                                         to use.
@@ -2742,6 +2978,10 @@ spec:
                                     kubeconfig:
                                       description: Kubeconfig is the path to the referenced
                                         file.
+                                      type: string
+                                    vClusterName:
+                                      description: VClusterName is the name of the
+                                        virtual cluster to use.
                                       type: string
                                   required:
                                   - kubeconfig
@@ -2792,6 +3032,10 @@ spec:
                                   description: Cluster defines cluster config and
                                     context.
                                   properties:
+                                    VClusterNameSpace:
+                                      description: VClusterNameSpace is the namespace
+                                        of the virtual cluster to use.
+                                      type: string
                                     context:
                                       description: Context is the name of the context
                                         to use.
@@ -2799,6 +3043,10 @@ spec:
                                     kubeconfig:
                                       description: Kubeconfig is the path to the referenced
                                         file.
+                                      type: string
+                                    vClusterName:
+                                      description: VClusterName is the name of the
+                                        virtual cluster to use.
                                       type: string
                                   required:
                                   - kubeconfig
@@ -2854,6 +3102,10 @@ spec:
                                   description: Cluster defines cluster config and
                                     context.
                                   properties:
+                                    VClusterNameSpace:
+                                      description: VClusterNameSpace is the namespace
+                                        of the virtual cluster to use.
+                                      type: string
                                     context:
                                       description: Context is the name of the context
                                         to use.
@@ -2861,6 +3113,10 @@ spec:
                                     kubeconfig:
                                       description: Kubeconfig is the path to the referenced
                                         file.
+                                      type: string
+                                    vClusterName:
+                                      description: VClusterName is the name of the
+                                        virtual cluster to use.
                                       type: string
                                   required:
                                   - kubeconfig
@@ -2931,6 +3187,10 @@ spec:
                                   description: Cluster defines cluster config and
                                     context.
                                   properties:
+                                    VClusterNameSpace:
+                                      description: VClusterNameSpace is the namespace
+                                        of the virtual cluster to use.
+                                      type: string
                                     context:
                                       description: Context is the name of the context
                                         to use.
@@ -2938,6 +3198,10 @@ spec:
                                     kubeconfig:
                                       description: Kubeconfig is the path to the referenced
                                         file.
+                                      type: string
+                                    vClusterName:
+                                      description: VClusterName is the name of the
+                                        virtual cluster to use.
                                       type: string
                                   required:
                                   - kubeconfig
@@ -3029,6 +3293,10 @@ spec:
                                   description: Cluster defines cluster config and
                                     context.
                                   properties:
+                                    VClusterNameSpace:
+                                      description: VClusterNameSpace is the namespace
+                                        of the virtual cluster to use.
+                                      type: string
                                     context:
                                       description: Context is the name of the context
                                         to use.
@@ -3036,6 +3304,10 @@ spec:
                                     kubeconfig:
                                       description: Kubeconfig is the path to the referenced
                                         file.
+                                      type: string
+                                    vClusterName:
+                                      description: VClusterName is the name of the
+                                        virtual cluster to use.
                                       type: string
                                   required:
                                   - kubeconfig
@@ -3226,6 +3498,10 @@ spec:
                                   description: Cluster defines cluster config and
                                     context.
                                   properties:
+                                    VClusterNameSpace:
+                                      description: VClusterNameSpace is the namespace
+                                        of the virtual cluster to use.
+                                      type: string
                                     context:
                                       description: Context is the name of the context
                                         to use.
@@ -3233,6 +3509,10 @@ spec:
                                     kubeconfig:
                                       description: Kubeconfig is the path to the referenced
                                         file.
+                                      type: string
+                                    vClusterName:
+                                      description: VClusterName is the name of the
+                                        virtual cluster to use.
                                       type: string
                                   required:
                                   - kubeconfig
@@ -3344,6 +3624,10 @@ spec:
                                   description: Cluster defines cluster config and
                                     context.
                                   properties:
+                                    VClusterNameSpace:
+                                      description: VClusterNameSpace is the namespace
+                                        of the virtual cluster to use.
+                                      type: string
                                     context:
                                       description: Context is the name of the context
                                         to use.
@@ -3351,6 +3635,10 @@ spec:
                                     kubeconfig:
                                       description: Kubeconfig is the path to the referenced
                                         file.
+                                      type: string
+                                    vClusterName:
+                                      description: VClusterName is the name of the
+                                        virtual cluster to use.
                                       type: string
                                   required:
                                   - kubeconfig
@@ -3417,6 +3705,10 @@ spec:
                                   description: Cluster defines cluster config and
                                     context.
                                   properties:
+                                    VClusterNameSpace:
+                                      description: VClusterNameSpace is the namespace
+                                        of the virtual cluster to use.
+                                      type: string
                                     context:
                                       description: Context is the name of the context
                                         to use.
@@ -3424,6 +3716,10 @@ spec:
                                     kubeconfig:
                                       description: Kubeconfig is the path to the referenced
                                         file.
+                                      type: string
+                                    vClusterName:
+                                      description: VClusterName is the name of the
+                                        virtual cluster to use.
                                       type: string
                                   required:
                                   - kubeconfig
@@ -3527,6 +3823,10 @@ spec:
                                   description: Cluster defines cluster config and
                                     context.
                                   properties:
+                                    VClusterNameSpace:
+                                      description: VClusterNameSpace is the namespace
+                                        of the virtual cluster to use.
+                                      type: string
                                     context:
                                       description: Context is the name of the context
                                         to use.
@@ -3534,6 +3834,10 @@ spec:
                                     kubeconfig:
                                       description: Kubeconfig is the path to the referenced
                                         file.
+                                      type: string
+                                    vClusterName:
+                                      description: VClusterName is the name of the
+                                        virtual cluster to use.
                                       type: string
                                   required:
                                   - kubeconfig
@@ -3643,6 +3947,10 @@ spec:
                                   description: Cluster defines cluster config and
                                     context.
                                   properties:
+                                    VClusterNameSpace:
+                                      description: VClusterNameSpace is the namespace
+                                        of the virtual cluster to use.
+                                      type: string
                                     context:
                                       description: Context is the name of the context
                                         to use.
@@ -3650,6 +3958,10 @@ spec:
                                     kubeconfig:
                                       description: Kubeconfig is the path to the referenced
                                         file.
+                                      type: string
+                                    vClusterName:
+                                      description: VClusterName is the name of the
+                                        virtual cluster to use.
                                       type: string
                                   required:
                                   - kubeconfig
@@ -3754,6 +4066,10 @@ spec:
                                   description: Cluster defines cluster config and
                                     context.
                                   properties:
+                                    VClusterNameSpace:
+                                      description: VClusterNameSpace is the namespace
+                                        of the virtual cluster to use.
+                                      type: string
                                     context:
                                       description: Context is the name of the context
                                         to use.
@@ -3761,6 +4077,10 @@ spec:
                                     kubeconfig:
                                       description: Kubeconfig is the path to the referenced
                                         file.
+                                      type: string
+                                    vClusterName:
+                                      description: VClusterName is the name of the
+                                        virtual cluster to use.
                                       type: string
                                   required:
                                   - kubeconfig
@@ -3838,6 +4158,10 @@ spec:
                                   description: Cluster defines cluster config and
                                     context.
                                   properties:
+                                    VClusterNameSpace:
+                                      description: VClusterNameSpace is the namespace
+                                        of the virtual cluster to use.
+                                      type: string
                                     context:
                                       description: Context is the name of the context
                                         to use.
@@ -3845,6 +4169,10 @@ spec:
                                     kubeconfig:
                                       description: Kubeconfig is the path to the referenced
                                         file.
+                                      type: string
+                                    vClusterName:
+                                      description: VClusterName is the name of the
+                                        virtual cluster to use.
                                       type: string
                                   required:
                                   - kubeconfig
@@ -3888,6 +4216,10 @@ spec:
                                   description: Cluster defines cluster config and
                                     context.
                                   properties:
+                                    VClusterNameSpace:
+                                      description: VClusterNameSpace is the namespace
+                                        of the virtual cluster to use.
+                                      type: string
                                     context:
                                       description: Context is the name of the context
                                         to use.
@@ -3895,6 +4227,10 @@ spec:
                                     kubeconfig:
                                       description: Kubeconfig is the path to the referenced
                                         file.
+                                      type: string
+                                    vClusterName:
+                                      description: VClusterName is the name of the
+                                        virtual cluster to use.
                                       type: string
                                   required:
                                   - kubeconfig
@@ -3945,6 +4281,10 @@ spec:
                                   description: Cluster defines cluster config and
                                     context.
                                   properties:
+                                    VClusterNameSpace:
+                                      description: VClusterNameSpace is the namespace
+                                        of the virtual cluster to use.
+                                      type: string
                                     context:
                                       description: Context is the name of the context
                                         to use.
@@ -3952,6 +4292,10 @@ spec:
                                     kubeconfig:
                                       description: Kubeconfig is the path to the referenced
                                         file.
+                                      type: string
+                                    vClusterName:
+                                      description: VClusterName is the name of the
+                                        virtual cluster to use.
                                       type: string
                                   required:
                                   - kubeconfig
@@ -4024,6 +4368,10 @@ spec:
                                   description: Cluster defines cluster config and
                                     context.
                                   properties:
+                                    VClusterNameSpace:
+                                      description: VClusterNameSpace is the namespace
+                                        of the virtual cluster to use.
+                                      type: string
                                     context:
                                       description: Context is the name of the context
                                         to use.
@@ -4031,6 +4379,10 @@ spec:
                                     kubeconfig:
                                       description: Kubeconfig is the path to the referenced
                                         file.
+                                      type: string
+                                    vClusterName:
+                                      description: VClusterName is the name of the
+                                        virtual cluster to use.
                                       type: string
                                   required:
                                   - kubeconfig
@@ -4123,6 +4475,10 @@ spec:
                                   description: Cluster defines cluster config and
                                     context.
                                   properties:
+                                    VClusterNameSpace:
+                                      description: VClusterNameSpace is the namespace
+                                        of the virtual cluster to use.
+                                      type: string
                                     context:
                                       description: Context is the name of the context
                                         to use.
@@ -4130,6 +4486,10 @@ spec:
                                     kubeconfig:
                                       description: Kubeconfig is the path to the referenced
                                         file.
+                                      type: string
+                                    vClusterName:
+                                      description: VClusterName is the name of the
+                                        virtual cluster to use.
                                       type: string
                                   required:
                                   - kubeconfig
@@ -4180,6 +4540,10 @@ spec:
                                   description: Cluster defines cluster config and
                                     context.
                                   properties:
+                                    VClusterNameSpace:
+                                      description: VClusterNameSpace is the namespace
+                                        of the virtual cluster to use.
+                                      type: string
                                     context:
                                       description: Context is the name of the context
                                         to use.
@@ -4187,6 +4551,10 @@ spec:
                                     kubeconfig:
                                       description: Kubeconfig is the path to the referenced
                                         file.
+                                      type: string
+                                    vClusterName:
+                                      description: VClusterName is the name of the
+                                        virtual cluster to use.
                                       type: string
                                   required:
                                   - kubeconfig
@@ -4283,6 +4651,10 @@ spec:
                                   description: Cluster defines cluster config and
                                     context.
                                   properties:
+                                    VClusterNameSpace:
+                                      description: VClusterNameSpace is the namespace
+                                        of the virtual cluster to use.
+                                      type: string
                                     context:
                                       description: Context is the name of the context
                                         to use.
@@ -4290,6 +4662,10 @@ spec:
                                     kubeconfig:
                                       description: Kubeconfig is the path to the referenced
                                         file.
+                                      type: string
+                                    vClusterName:
+                                      description: VClusterName is the name of the
+                                        virtual cluster to use.
                                       type: string
                                   required:
                                   - kubeconfig
@@ -4395,6 +4771,10 @@ spec:
                                   description: Cluster defines cluster config and
                                     context.
                                   properties:
+                                    VClusterNameSpace:
+                                      description: VClusterNameSpace is the namespace
+                                        of the virtual cluster to use.
+                                      type: string
                                     context:
                                       description: Context is the name of the context
                                         to use.
@@ -4402,6 +4782,10 @@ spec:
                                     kubeconfig:
                                       description: Kubeconfig is the path to the referenced
                                         file.
+                                      type: string
+                                    vClusterName:
+                                      description: VClusterName is the name of the
+                                        virtual cluster to use.
                                       type: string
                                   required:
                                   - kubeconfig
@@ -4497,6 +4881,10 @@ spec:
                                   description: Cluster defines cluster config and
                                     context.
                                   properties:
+                                    VClusterNameSpace:
+                                      description: VClusterNameSpace is the namespace
+                                        of the virtual cluster to use.
+                                      type: string
                                     context:
                                       description: Context is the name of the context
                                         to use.
@@ -4504,6 +4892,10 @@ spec:
                                     kubeconfig:
                                       description: Kubeconfig is the path to the referenced
                                         file.
+                                      type: string
+                                    vClusterName:
+                                      description: VClusterName is the name of the
+                                        virtual cluster to use.
                                       type: string
                                   required:
                                   - kubeconfig
@@ -4694,11 +5086,19 @@ spec:
                 additionalProperties:
                   description: Cluster defines cluster config and context.
                   properties:
+                    VClusterNameSpace:
+                      description: VClusterNameSpace is the namespace of the virtual
+                        cluster to use.
+                      type: string
                     context:
                       description: Context is the name of the context to use.
                       type: string
                     kubeconfig:
                       description: Kubeconfig is the path to the referenced file.
+                      type: string
+                    vClusterName:
+                      description: VClusterName is the name of the virtual cluster
+                        to use.
                       type: string
                   required:
                   - kubeconfig
@@ -4794,6 +5194,10 @@ spec:
                               additionalProperties:
                                 description: Cluster defines cluster config and context.
                                 properties:
+                                  VClusterNameSpace:
+                                    description: VClusterNameSpace is the namespace
+                                      of the virtual cluster to use.
+                                    type: string
                                   context:
                                     description: Context is the name of the context
                                       to use.
@@ -4801,6 +5205,10 @@ spec:
                                   kubeconfig:
                                     description: Kubeconfig is the path to the referenced
                                       file.
+                                    type: string
+                                  vClusterName:
+                                    description: VClusterName is the name of the virtual
+                                      cluster to use.
                                     type: string
                                 required:
                                 - kubeconfig
@@ -4897,6 +5305,10 @@ spec:
                               additionalProperties:
                                 description: Cluster defines cluster config and context.
                                 properties:
+                                  VClusterNameSpace:
+                                    description: VClusterNameSpace is the namespace
+                                      of the virtual cluster to use.
+                                    type: string
                                   context:
                                     description: Context is the name of the context
                                       to use.
@@ -4904,6 +5316,10 @@ spec:
                                   kubeconfig:
                                     description: Kubeconfig is the path to the referenced
                                       file.
+                                    type: string
+                                  vClusterName:
+                                    description: VClusterName is the name of the virtual
+                                      cluster to use.
                                     type: string
                                 required:
                                 - kubeconfig
@@ -5006,6 +5422,10 @@ spec:
                               additionalProperties:
                                 description: Cluster defines cluster config and context.
                                 properties:
+                                  VClusterNameSpace:
+                                    description: VClusterNameSpace is the namespace
+                                      of the virtual cluster to use.
+                                    type: string
                                   context:
                                     description: Context is the name of the context
                                       to use.
@@ -5013,6 +5433,10 @@ spec:
                                   kubeconfig:
                                     description: Kubeconfig is the path to the referenced
                                       file.
+                                    type: string
+                                  vClusterName:
+                                    description: VClusterName is the name of the virtual
+                                      cluster to use.
                                     type: string
                                 required:
                                 - kubeconfig
@@ -5068,6 +5492,10 @@ spec:
                               additionalProperties:
                                 description: Cluster defines cluster config and context.
                                 properties:
+                                  VClusterNameSpace:
+                                    description: VClusterNameSpace is the namespace
+                                      of the virtual cluster to use.
+                                    type: string
                                   context:
                                     description: Context is the name of the context
                                       to use.
@@ -5075,6 +5503,10 @@ spec:
                                   kubeconfig:
                                     description: Kubeconfig is the path to the referenced
                                       file.
+                                    type: string
+                                  vClusterName:
+                                    description: VClusterName is the name of the virtual
+                                      cluster to use.
                                     type: string
                                 required:
                                 - kubeconfig
@@ -5124,6 +5556,10 @@ spec:
                               additionalProperties:
                                 description: Cluster defines cluster config and context.
                                 properties:
+                                  VClusterNameSpace:
+                                    description: VClusterNameSpace is the namespace
+                                      of the virtual cluster to use.
+                                    type: string
                                   context:
                                     description: Context is the name of the context
                                       to use.
@@ -5131,6 +5567,10 @@ spec:
                                   kubeconfig:
                                     description: Kubeconfig is the path to the referenced
                                       file.
+                                    type: string
+                                  vClusterName:
+                                    description: VClusterName is the name of the virtual
+                                      cluster to use.
                                     type: string
                                 required:
                                 - kubeconfig
@@ -5185,6 +5625,10 @@ spec:
                               additionalProperties:
                                 description: Cluster defines cluster config and context.
                                 properties:
+                                  VClusterNameSpace:
+                                    description: VClusterNameSpace is the namespace
+                                      of the virtual cluster to use.
+                                    type: string
                                   context:
                                     description: Context is the name of the context
                                       to use.
@@ -5192,6 +5636,10 @@ spec:
                                   kubeconfig:
                                     description: Kubeconfig is the path to the referenced
                                       file.
+                                    type: string
+                                  vClusterName:
+                                    description: VClusterName is the name of the virtual
+                                      cluster to use.
                                     type: string
                                 required:
                                 - kubeconfig
@@ -5261,6 +5709,10 @@ spec:
                               additionalProperties:
                                 description: Cluster defines cluster config and context.
                                 properties:
+                                  VClusterNameSpace:
+                                    description: VClusterNameSpace is the namespace
+                                      of the virtual cluster to use.
+                                    type: string
                                   context:
                                     description: Context is the name of the context
                                       to use.
@@ -5268,6 +5720,10 @@ spec:
                                   kubeconfig:
                                     description: Kubeconfig is the path to the referenced
                                       file.
+                                    type: string
+                                  vClusterName:
+                                    description: VClusterName is the name of the virtual
+                                      cluster to use.
                                     type: string
                                 required:
                                 - kubeconfig
@@ -5357,6 +5813,10 @@ spec:
                               additionalProperties:
                                 description: Cluster defines cluster config and context.
                                 properties:
+                                  VClusterNameSpace:
+                                    description: VClusterNameSpace is the namespace
+                                      of the virtual cluster to use.
+                                    type: string
                                   context:
                                     description: Context is the name of the context
                                       to use.
@@ -5364,6 +5824,10 @@ spec:
                                   kubeconfig:
                                     description: Kubeconfig is the path to the referenced
                                       file.
+                                    type: string
+                                  vClusterName:
+                                    description: VClusterName is the name of the virtual
+                                      cluster to use.
                                     type: string
                                 required:
                                 - kubeconfig
@@ -5609,6 +6073,10 @@ spec:
                             additionalProperties:
                               description: Cluster defines cluster config and context.
                               properties:
+                                VClusterNameSpace:
+                                  description: VClusterNameSpace is the namespace
+                                    of the virtual cluster to use.
+                                  type: string
                                 context:
                                   description: Context is the name of the context
                                     to use.
@@ -5616,6 +6084,10 @@ spec:
                                 kubeconfig:
                                   description: Kubeconfig is the path to the referenced
                                     file.
+                                  type: string
+                                vClusterName:
+                                  description: VClusterName is the name of the virtual
+                                    cluster to use.
                                   type: string
                               required:
                               - kubeconfig
@@ -6357,6 +6829,10 @@ spec:
                             additionalProperties:
                               description: Cluster defines cluster config and context.
                               properties:
+                                VClusterNameSpace:
+                                  description: VClusterNameSpace is the namespace
+                                    of the virtual cluster to use.
+                                  type: string
                                 context:
                                   description: Context is the name of the context
                                     to use.
@@ -6364,6 +6840,10 @@ spec:
                                 kubeconfig:
                                   description: Kubeconfig is the path to the referenced
                                     file.
+                                  type: string
+                                vClusterName:
+                                  description: VClusterName is the name of the virtual
+                                    cluster to use.
                                   type: string
                               required:
                               - kubeconfig
@@ -7007,12 +7487,20 @@ spec:
                       additionalProperties:
                         description: Cluster defines cluster config and context.
                         properties:
+                          VClusterNameSpace:
+                            description: VClusterNameSpace is the namespace of the
+                              virtual cluster to use.
+                            type: string
                           context:
                             description: Context is the name of the context to use.
                             type: string
                           kubeconfig:
                             description: Kubeconfig is the path to the referenced
                               file.
+                            type: string
+                          vClusterName:
+                            description: VClusterName is the name of the virtual cluster
+                              to use.
                             type: string
                         required:
                         - kubeconfig
@@ -7140,6 +7628,10 @@ spec:
                             additionalProperties:
                               description: Cluster defines cluster config and context.
                               properties:
+                                VClusterNameSpace:
+                                  description: VClusterNameSpace is the namespace
+                                    of the virtual cluster to use.
+                                  type: string
                                 context:
                                   description: Context is the name of the context
                                     to use.
@@ -7147,6 +7639,10 @@ spec:
                                 kubeconfig:
                                   description: Kubeconfig is the path to the referenced
                                     file.
+                                  type: string
+                                vClusterName:
+                                  description: VClusterName is the name of the virtual
+                                    cluster to use.
                                   type: string
                               required:
                               - kubeconfig
@@ -7923,6 +8419,10 @@ spec:
                             additionalProperties:
                               description: Cluster defines cluster config and context.
                               properties:
+                                VClusterNameSpace:
+                                  description: VClusterNameSpace is the namespace
+                                    of the virtual cluster to use.
+                                  type: string
                                 context:
                                   description: Context is the name of the context
                                     to use.
@@ -7930,6 +8430,10 @@ spec:
                                 kubeconfig:
                                   description: Kubeconfig is the path to the referenced
                                     file.
+                                  type: string
+                                vClusterName:
+                                  description: VClusterName is the name of the virtual
+                                    cluster to use.
                                   type: string
                               required:
                               - kubeconfig

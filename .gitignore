@@ -3,7 +3,7 @@
 .temp/
 .tools/
 .venv/
-chainsaw
+../../go/src/code.byted.org/xiawencan.11/namune/chainsaw
 coverage.out
 website/site
 pkg/runner/chainsaw.xml

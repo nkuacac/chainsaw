@@ -3,12 +3,17 @@ package functions
 import (
 	"context"
 	"errors"
+	"fmt"
+	"strings"
+	"time"
 
+	"github.com/jmespath/go-jmespath"
 	"github.com/kyverno/chainsaw/pkg/client"
 	apierrors "k8s.io/apimachinery/pkg/api/errors"
 	"k8s.io/apimachinery/pkg/api/meta"
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 	"k8s.io/apimachinery/pkg/runtime/schema"
+	"k8s.io/apimachinery/pkg/util/wait"
 	"k8s.io/client-go/discovery"
 	"k8s.io/client-go/rest"
 )
@@ -112,7 +117,7 @@ func jpKubernetesList(arguments []any) (any, error) {
 	if err := getArg(arguments, 2, &kind); err != nil {
 		return nil, err
 	}
-	if len(arguments) == 4 {
+	if len(arguments) >= 4 {
 		if err := getArg(arguments, 3, &namespace); err != nil {
 			return nil, err
 		}
@@ -128,6 +133,47 @@ func jpKubernetesList(arguments []any) (any, error) {
 		return nil, err
 	}
 	return list.UnstructuredContent(), nil
+}
+
+func jpKubernetesWait(arguments []any) (any, error) {
+	fmt.Println("jpKubernetesWait", arguments)
+	var path, expect string
+	if len(arguments) >= 5 {
+		if err := getArg(arguments, 4, &path); err != nil {
+			return nil, err
+		}
+	}
+	if len(arguments) >= 6 {
+		if err := getArg(arguments, 5, &expect); err != nil {
+			return nil, err
+		}
+	}
+	fmt.Println("jpKubernetesWait path:", path, "expect:", expect)
+	err := wait.PollUntilContextTimeout(context.TODO(), 1*time.Second, 60*time.Second, true, func(ctx context.Context) (done bool, err error) {
+		list, err := jpKubernetesList(arguments)
+		if err != nil {
+			fmt.Println("jpKubernetesWait jpKubernetesList err:", err)
+			return false, err
+		}
+		//marshal, err := json.Marshal(list)
+		//if err != nil {
+		//	fmt.Println("jpKubernetesWait marshal err:", err)
+		//	return false, err
+		//}
+		//fmt.Println("jpKubernetesWait raw:", string(marshal))
+
+		path = strings.ReplaceAll(path, "`", "'")
+		search, err := jmespath.MustCompile(path).Search(list)
+		if err != nil {
+			fmt.Println("jpKubernetesWait Search err:", err)
+			return false, err
+		}
+		fmt.Println("jpKubernetesWait search result:", fmt.Sprintf("%v", search), "expect:", expect)
+
+		return search == expect, nil
+	})
+
+	return err == nil, err
 }
 
 func jpKubernetesServerVersion(arguments []any) (any, error) {
