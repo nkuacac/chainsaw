@@ -1,8 +1,8 @@
 package engine
 
 import (
-	skutil "code.byted.org/inf/superkruise/pkg/superkruiseutil"
 	"context"
+	"github.com/kyverno/chainsaw/pkg/mutate"
 	"path/filepath"
 
 	"github.com/kyverno/chainsaw/pkg/apis/v1alpha1"
@@ -24,10 +24,23 @@ func WithBindings(ctx context.Context, tc Context, variables ...v1alpha1.Binding
 func WithClusters(ctx context.Context, tc Context, basePath string, c map[string]v1alpha1.Cluster) Context {
 	for name, cluster := range c {
 		if len(cluster.VClusterName) > 0 && len(cluster.VClusterNameSpace) > 0 {
-			ck, err := WithVCluster(ctx, cluster.VClusterName, cluster.VClusterNameSpace)
+			vClusterName, err := mutate.Mutate(ctx, nil, mutate.Parse(ctx, cluster.VClusterName), nil, tc.Bindings())
 			if err != nil {
 				panic(err)
 			}
+			vClusterNameSpace, err := mutate.Mutate(ctx, nil, mutate.Parse(ctx, cluster.VClusterNameSpace), nil, tc.Bindings())
+			if err != nil {
+				panic(err)
+			}
+			ck := clusters.NewVCluster(ctx, vClusterName.(string), vClusterNameSpace.(string))
+			tc = tc.WithCluster(ctx, name, ck)
+		} else if len(cluster.DataClusterName) > 0 {
+			get, err := mutate.Mutate(ctx, nil, mutate.Parse(ctx, cluster.DataClusterName), nil, tc.Bindings())
+			if err != nil {
+				panic(err)
+			}
+			controlClusterName := cluster.ControlClusterName
+			ck := clusters.NewDataCluster(tc.Cluster(controlClusterName), get.(string))
 			tc = tc.WithCluster(ctx, name, ck)
 		} else {
 			kubeconfig := filepath.Join(basePath, cluster.Kubeconfig)
@@ -55,13 +68,4 @@ func WithNamespace(ctx context.Context, tc Context, namespace string) Context {
 
 func WithValues(ctx context.Context, tc Context, values any) Context {
 	return tc.WithBinding(ctx, "values", values)
-}
-
-func WithVCluster(ctx context.Context, name, namespace string) (clusters.Cluster, error) {
-	cfg, err := skutil.GetRestConfig(ctx, skutil.SecretNamePrefix+name, namespace)
-	if err != nil {
-		return nil, err
-	}
-
-	return clusters.NewClusterFromConfig(cfg)
 }

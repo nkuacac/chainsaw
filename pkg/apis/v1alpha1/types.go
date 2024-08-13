@@ -55,6 +55,12 @@ type Cluster struct {
 	// VClusterNameSpace is the namespace of the virtual cluster to use.
 	// +optional
 	VClusterNameSpace string `json:"vClusterNameSpace,omitempty"`
+	// DataClusterName is the namespace of the data cluster to use.
+	// +optional
+	DataClusterName string `json:"dataClusterName,omitempty"`
+	// DataClusterName is the namespace of the data cluster to use.
+	// +optional
+	ControlClusterName string `json:"controlClusterName,omitempty"`
 }
 
 // Clusters defines a cluster map.

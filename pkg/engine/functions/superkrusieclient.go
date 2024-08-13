@@ -5,11 +5,11 @@ import (
 	"errors"
 	"fmt"
 	"strings"
-	"sync"
 	"time"
 
 	"code.byted.org/inf/superkruise/pkg/clientcache"
 	"github.com/jmespath/go-jmespath"
+	"github.com/kyverno/chainsaw/pkg/engine/client"
 	"github.com/kyverno/chainsaw/pkg/engine/functions/tracectx"
 	v1 "k8s.io/api/core/v1"
 	apierrors "k8s.io/apimachinery/pkg/api/errors"
@@ -21,20 +21,6 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/cache"
 	ctrlclient "sigs.k8s.io/controller-runtime/pkg/client"
 )
-
-var once sync.Once
-
-func initClient(cfg *rest.Config) clientcache.ClientFactoryInterface {
-	//fmt.Println("before initClient")
-	client := new(clientcache.ClientFactoryShop)
-	f := client.Generate(clientcache.ClientFactoryNameDefault)
-	once.Do(func() {
-		go f.Start(cfg, 0)
-		time.Sleep(5 * time.Second)
-	})
-	//fmt.Println("after initClient")
-	return f
-}
 
 func createClusterClient(cluster string, f clientcache.ClientFactoryInterface) {
 	//fmt.Println("before CreateClient", cluster, time.Now())
@@ -72,7 +58,7 @@ func jpAllDataClusterInformerInit(arguments []any) (any, error) {
 	}
 	fmt.Println("jpAllDataClusterInformerInit args:", clusters, apiVersion, kind, namespace)
 
-	f := initClient(cfg)
+	f := client.InitDataClusterClient(cfg)
 	all := strings.Split(clusters, ",")
 	ctx := tracectx.Context{}
 	err := ParallelRun(ctx.Do().Step("jpAllDataClusterInformerInit"), len(all), len(all), func(i int) error {
@@ -107,7 +93,7 @@ func jpAllDataClusterInformerCleanup(arguments []any) (any, error) {
 	}
 	fmt.Println("jpAllDataClusterInformerCleanup args:", clusters, apiVersion, kind, namespace)
 
-	f := initClient(cfg)
+	f := client.InitDataClusterClient(cfg)
 	all := strings.Split(clusters, ",")
 	ctx := tracectx.Context{}
 	err := ParallelRun(ctx.Do().Step("jpAllDataClusterInformerCleanup"), len(all), len(all), func(i int) error {
@@ -298,7 +284,7 @@ func getDataClusterClient(cluster string, arguments []any) (clientcache.ClientIn
 	}
 	fmt.Println("getDataClusterClient args:", cluster, apiVersion, kind)
 
-	f := initClient(cfg)
+	f := client.InitDataClusterClient(cfg)
 	var client clientcache.ClientInterface
 	ctx := tracectx.Context{}
 	err := ParallelRun(ctx.Do(), 1, 1, func(i int) error {
@@ -330,7 +316,7 @@ func jpAllDataClusterServerVersion(arguments []any) (any, error) {
 	}
 
 	var versions []string
-	f := initClient(cfg)
+	f := client.InitDataClusterClient(cfg)
 	all := strings.Split(clusters, ",")
 	ctx := tracectx.Context{}
 	err := ParallelRun(ctx.Do().Step("jpAllDataClusterServerVersion"), len(all), len(all), func(i int) error {
@@ -380,7 +366,7 @@ func jpAllDataClusterCreateNamespace(arguments []any) (any, error) {
 		return nil, err
 	}
 
-	f := initClient(cfg)
+	f := client.InitDataClusterClient(cfg)
 	all := strings.Split(clusters, ",")
 	ctx := tracectx.Context{}
 	err := ParallelRun(ctx.Do().Step("jpAllDataClusterCreateNamespace args:", clusters, namespace),
@@ -432,7 +418,7 @@ func jpAllDataClusterDeleteNamespace(arguments []any) (any, error) {
 		return nil, err
 	}
 
-	f := initClient(cfg)
+	f := client.InitDataClusterClient(cfg)
 	all := strings.Split(clusters, ",")
 	ctx := tracectx.Context{}
 	err := ParallelRun(ctx.Do().Step("jpAllDataClusterDeleteNamespace args:", clusters, namespace),
