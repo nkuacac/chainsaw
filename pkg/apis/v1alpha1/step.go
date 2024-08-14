@@ -55,6 +55,9 @@ type TestStep struct {
 	// Use defines a reference to a step template.
 	Use *Use `json:"use,omitempty"`
 
+	// WorkDir defines step dir
+	WorkDir string `json:"workDir,omitempty"`
+
 	// TestStepSpec of the step.
 	TestStepSpec `json:",inline"`
 }

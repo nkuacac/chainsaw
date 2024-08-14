@@ -66,6 +66,7 @@ func LoadTest(fileName string, path string, remarshal bool) ([]Test, error) {
 						if len(steptpl) != 1 {
 							return nil, errors.New("step template not found or multiple templates exist")
 						}
+						step.WorkDir = filepath.Dir(filepath.Join(path, step.Use.Template))
 						step.Use = nil
 						step.Bindings = append(step.Bindings, steptpl[0].Spec.Bindings...)
 						step.Try = append(step.Try, steptpl[0].Spec.Try...)

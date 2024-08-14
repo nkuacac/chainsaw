@@ -170,9 +170,13 @@ func (p *testProcessor) createStepProcessor(step v1alpha1.TestStep) StepProcesso
 	if p.report != nil {
 		report = p.report.ForStep(&step)
 	}
+	workdir := p.test.BasePath
+	if len(step.WorkDir) > 0 {
+		workdir = step.WorkDir
+	}
 	return NewStepProcessor(
 		step,
-		p.test.BasePath,
+		workdir,
 		report,
 		p.delayBeforeCleanup,
 		p.terminationGracePeriod,

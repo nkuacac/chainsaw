@@ -5377,6 +5377,9 @@ spec:
                           description: Template references a step template.
                           type: string
                       type: object
+                    workDir:
+                      description: WorkDir defines step dir
+                      type: string
                   type: object
                 type: array
               template:
