@@ -7,8 +7,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/jmespath/go-jmespath"
 	"github.com/kyverno/chainsaw/pkg/client"
+	"github.com/kyverno/kyverno-json/pkg/engine/template"
 	apierrors "k8s.io/apimachinery/pkg/api/errors"
 	"k8s.io/apimachinery/pkg/api/meta"
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
@@ -163,7 +163,8 @@ func jpKubernetesWait(arguments []any) (any, error) {
 		//fmt.Println("jpKubernetesWait raw:", string(marshal))
 
 		path = strings.ReplaceAll(path, "`", "'")
-		search, err := jmespath.MustCompile(path).Search(list)
+
+		search, err := template.Execute(ctx, path, list, nil, template.WithFunctionCaller(InnerCaller()))
 		if err != nil {
 			fmt.Println("jpKubernetesWait Search err:", err)
 			return false, err

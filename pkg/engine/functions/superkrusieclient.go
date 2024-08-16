@@ -8,9 +8,9 @@ import (
 	"time"
 
 	"code.byted.org/inf/superkruise/pkg/clientcache"
-	"github.com/jmespath/go-jmespath"
 	"github.com/kyverno/chainsaw/pkg/engine/client"
 	"github.com/kyverno/chainsaw/pkg/engine/functions/tracectx"
+	"github.com/kyverno/kyverno-json/pkg/engine/template"
 	v1 "k8s.io/api/core/v1"
 	apierrors "k8s.io/apimachinery/pkg/api/errors"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -246,7 +246,8 @@ func jpAllDataClusterWait(arguments []any) (any, error) {
 			fmt.Println("jpAllDataClusterWait list err:", err)
 			return false, err
 		}
-		search, err := jmespath.Search(path, list)
+		path = strings.ReplaceAll(path, "`", "'")
+		search, err := template.Execute(ctx, path, list, nil, template.WithFunctionCaller(InnerCaller()))
 		if err != nil {
 			fmt.Println("jpAllDataClusterWait search err:", err)
 			return false, err

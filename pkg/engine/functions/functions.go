@@ -60,17 +60,6 @@ func GetFunctions() []functions.FunctionEntry {
 		},
 		Handler: jpKubernetesList,
 	}, {
-		Name: k8sWait,
-		Arguments: []functions.ArgSpec{
-			{Types: []functions.JpType{functions.JpAny}},
-			{Types: []functions.JpType{functions.JpString}, Optional: true},
-			{Types: []functions.JpType{functions.JpString}, Optional: true},
-			{Types: []functions.JpType{functions.JpString}, Optional: true},
-			{Types: []functions.JpType{functions.JpString}, Optional: true},
-			{Types: []functions.JpType{functions.JpString}, Optional: true},
-		},
-		Handler: jpKubernetesWait,
-	}, {
 		Name: k8sExists,
 		Arguments: []functions.ArgSpec{
 			{Types: []functions.JpType{functions.JpAny}},
@@ -158,19 +147,6 @@ func GetFunctions() []functions.FunctionEntry {
 		},
 		Handler: jpAllDataClusterList,
 	}, {
-		Name: allDataClusterWait,
-		Arguments: []functions.ArgSpec{
-			{Types: []functions.JpType{functions.JpAny}},
-			{Types: []functions.JpType{functions.JpString}},
-			{Types: []functions.JpType{functions.JpString}},
-			{Types: []functions.JpType{functions.JpString}},
-			{Types: []functions.JpType{functions.JpString}},
-			{Types: []functions.JpType{functions.JpString}},
-			{Types: []functions.JpType{functions.JpString}},
-			{Types: []functions.JpType{functions.JpString}},
-		},
-		Handler: jpAllDataClusterWait,
-	}, {
 		Name: allDataClusterServerVersion,
 		Arguments: []functions.ArgSpec{
 			{Types: []functions.JpType{functions.JpAny}},
@@ -229,5 +205,33 @@ func GetFunctions() []functions.FunctionEntry {
 			{Types: []functions.JpType{functions.JpString}, Optional: true},
 		},
 		Handler: tableFormat,
+	}}
+}
+
+func GetInnerFunc() []functions.FunctionEntry {
+	return []functions.FunctionEntry{{
+		Name: k8sWait,
+		Arguments: []functions.ArgSpec{
+			{Types: []functions.JpType{functions.JpAny}},
+			{Types: []functions.JpType{functions.JpString}, Optional: true},
+			{Types: []functions.JpType{functions.JpString}, Optional: true},
+			{Types: []functions.JpType{functions.JpString}, Optional: true},
+			{Types: []functions.JpType{functions.JpString}, Optional: true},
+			{Types: []functions.JpType{functions.JpString}, Optional: true},
+		},
+		Handler: jpKubernetesWait,
+	}, {
+		Name: allDataClusterWait,
+		Arguments: []functions.ArgSpec{
+			{Types: []functions.JpType{functions.JpAny}},
+			{Types: []functions.JpType{functions.JpString}},
+			{Types: []functions.JpType{functions.JpString}},
+			{Types: []functions.JpType{functions.JpString}},
+			{Types: []functions.JpType{functions.JpString}},
+			{Types: []functions.JpType{functions.JpString}},
+			{Types: []functions.JpType{functions.JpString}},
+			{Types: []functions.JpType{functions.JpString}},
+		},
+		Handler: jpAllDataClusterWait,
 	}}
 }
