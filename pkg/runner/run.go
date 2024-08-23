@@ -62,7 +62,7 @@ func run(
 			t.Helper()
 			t.Parallel()
 			ctx := testing.IntoContext(ctx, t)
-			ctx = logging.IntoContext(ctx, logging.NewLogger(t, clock, t.Name(), "@chainsaw"))
+			ctx = logging.IntoContext(ctx, logging.NewLogger(t, clock, t.Name(), "@chainsaw", nil))
 			processor := processors.NewTestsProcessor(config, clock, testsReport)
 			processor.Run(ctx, tc, tests...)
 		},

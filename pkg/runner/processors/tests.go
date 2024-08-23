@@ -110,7 +110,7 @@ func (p *testsProcessor) Run(ctx context.Context, tc engine.Context, tests ...di
 						size = len(name)
 					}
 				}
-				ctx = logging.IntoContext(ctx, logging.NewLogger(t, p.clock, test.Test.Name, fmt.Sprintf("%-*s", size, "@chainsaw")))
+				ctx = logging.IntoContext(ctx, logging.NewLogger(t, p.clock, test.Test.Name, fmt.Sprintf("%-*s", size, "@chainsaw"), nil))
 				info := TestInfo{
 					Id:         i + 1,
 					ScenarioId: s + 1,

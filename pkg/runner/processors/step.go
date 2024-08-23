@@ -108,6 +108,9 @@ func (p *stepProcessor) Run(ctx context.Context, namespacer namespacer.Namespace
 	})
 	if err != nil {
 		logging.Log(ctx, logging.Internal, logging.ErrorStatus, color.BoldRed, logging.ErrSection(err))
+		if p.report != nil {
+			p.report.SetErr(err)
+		}
 		failer.FailNow(ctx)
 	}
 	cleaner := cleaner.New(p.timeouts.Cleanup.Duration, p.delayBeforeCleanup, p.deletionPropagationPolicy)
@@ -119,12 +122,18 @@ func (p *stepProcessor) Run(ctx context.Context, namespacer namespacer.Namespace
 			}()
 			for _, err := range cleaner.Run(ctx) {
 				logging.Log(ctx, logging.Cleanup, logging.ErrorStatus, color.BoldRed, logging.ErrSection(err))
+				if p.report != nil {
+					p.report.SetErr(err)
+				}
 				failer.Fail(ctx)
 			}
 			for i, operation := range p.step.Cleanup {
 				operations, err := p.finallyOperation(i, namespacer, tc.Bindings(), operation)
 				if err != nil {
 					logger.Log(logging.Cleanup, logging.ErrorStatus, color.BoldRed, logging.ErrSection(err))
+					if p.report != nil {
+						p.report.SetErr(err)
+					}
 					failer.Fail(ctx)
 				}
 				for _, operation := range operations {
@@ -143,6 +152,9 @@ func (p *stepProcessor) Run(ctx context.Context, namespacer namespacer.Namespace
 				operations, err := p.finallyOperation(i, namespacer, tc.Bindings(), operation)
 				if err != nil {
 					logger.Log(logging.Finally, logging.ErrorStatus, color.BoldRed, logging.ErrSection(err))
+					if p.report != nil {
+						p.report.SetErr(err)
+					}
 					failer.Fail(ctx)
 				}
 				for _, operation := range operations {
@@ -162,6 +174,9 @@ func (p *stepProcessor) Run(ctx context.Context, namespacer namespacer.Namespace
 					operations, err := p.catchOperation(i, namespacer, tc.Bindings(), operation)
 					if err != nil {
 						logger.Log(logging.Catch, logging.ErrorStatus, color.BoldRed, logging.ErrSection(err))
+						if p.report != nil {
+							p.report.SetErr(err)
+						}
 						failer.Fail(ctx)
 					}
 					for _, operation := range operations {
@@ -178,6 +193,9 @@ func (p *stepProcessor) Run(ctx context.Context, namespacer namespacer.Namespace
 	for i, operation := range p.step.Try {
 		operations, err := p.tryOperation(i, namespacer, tc.Bindings(), operation, cleaner)
 		if err != nil {
+			if p.report != nil {
+				p.report.SetErr(err)
+			}
 			logger.Log(logging.Try, logging.ErrorStatus, color.BoldRed, logging.ErrSection(err))
 			failer.FailNow(ctx)
 		}

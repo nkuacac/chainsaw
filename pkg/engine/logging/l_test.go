@@ -18,7 +18,7 @@ func TestNewLogger(t *testing.T) {
 	fakeClock := tclock.NewFakePassiveClock(time.Now())
 	testName := "testName"
 	stepName := "stepName"
-	logger, ok := NewLogger(t, fakeClock, testName, stepName).(*logger)
+	logger, ok := NewLogger(t, fakeClock, testName, stepName, nil).(*logger)
 
 	assert.True(t, ok, "Type assertion for *logger failed")
 
@@ -36,7 +36,7 @@ func (v s) String() string { return string(v) }
 func Test_logger_Log(t *testing.T) {
 	fakeClock := tclock.NewFakePassiveClock(time.Now())
 	mockT := &tlogging.FakeTLogger{}
-	fakeLogger := NewLogger(mockT, fakeClock, "testName", "stepName").(*logger)
+	fakeLogger := NewLogger(mockT, fakeClock, "testName", "stepName", nil).(*logger)
 	disabled := color.New(color.FgBlue)
 	disabled.DisableColor()
 	enabled := color.New(color.FgBlue)

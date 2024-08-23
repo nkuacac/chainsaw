@@ -14,7 +14,7 @@ import (
 func TestLog(t *testing.T) {
 	fakeClock := tclock.NewFakePassiveClock(time.Now())
 	mockT := &tlogging.FakeTLogger{}
-	fakeLogger := NewLogger(mockT, fakeClock, "testName", "stepName").(*logger)
+	fakeLogger := NewLogger(mockT, fakeClock, "testName", "stepName", nil).(*logger)
 	tests := []struct {
 		name      string
 		ctx       context.Context //nolint:containedctx

@@ -198,13 +198,6 @@ func GetFunctions() []functions.FunctionEntry {
 			{Types: []functions.JpType{functions.JpString}, Optional: true},
 		},
 		Handler: jpDataKubernetesList,
-	}, {
-		Name: "table_print",
-		Arguments: []functions.ArgSpec{
-			{Types: []functions.JpType{functions.JpAny}},
-			{Types: []functions.JpType{functions.JpString}, Optional: true},
-		},
-		Handler: tableFormat,
 	}}
 }
 
@@ -233,5 +226,12 @@ func GetInnerFunc() []functions.FunctionEntry {
 			{Types: []functions.JpType{functions.JpString}},
 		},
 		Handler: jpAllDataClusterWait,
+	}, {
+		Name: "table_print",
+		Arguments: []functions.ArgSpec{
+			{Types: []functions.JpType{functions.JpAny}},
+			{Types: []functions.JpType{functions.JpString}, Optional: true},
+		},
+		Handler: tableFormat,
 	}}
 }

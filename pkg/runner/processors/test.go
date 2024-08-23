@@ -114,6 +114,9 @@ func (p *testProcessor) Run(ctx context.Context, nspacer namespacer.Namespacer, 
 			}()
 			for _, err := range mainCleaner.Run(ctx) {
 				logging.Log(ctx, logging.Cleanup, logging.ErrorStatus, color.BoldRed, logging.ErrSection(err))
+				if p.report != nil {
+					p.report.SetErr(err)
+				}
 				failer.Fail(ctx)
 			}
 		}
@@ -142,6 +145,9 @@ func (p *testProcessor) Run(ctx context.Context, nspacer namespacer.Namespacer, 
 	tc, namespace, err := setupContextData(ctx, tc, contextData)
 	if err != nil {
 		logging.Log(ctx, logging.Internal, logging.ErrorStatus, color.BoldRed, logging.ErrSection(err))
+		if p.report != nil {
+			p.report.SetErr(err)
+		}
 		failer.FailNow(ctx)
 	}
 	if namespace != nil {
@@ -155,7 +161,7 @@ func (p *testProcessor) Run(ctx context.Context, nspacer namespacer.Namespacer, 
 		if name == "" {
 			name = fmt.Sprintf("step-%d", i+1)
 		}
-		ctx := logging.IntoContext(ctx, logging.NewLogger(t, p.clock, p.test.Test.Name, fmt.Sprintf("%-*s", p.size, name)))
+		ctx := logging.IntoContext(ctx, logging.NewLogger(t, p.clock, p.test.Test.Name, fmt.Sprintf("%-*s", p.size, name), p.report))
 		info := StepInfo{
 			Id: i + 1,
 		}

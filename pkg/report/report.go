@@ -84,10 +84,19 @@ type TestReport struct {
 	failed    bool
 	steps     []*StepReport
 	lock      sync.Mutex
+	output    []string
+	err       error
 }
 
+func (r *TestReport) SetErr(err error) {
+	r.err = err
+}
 func (r *TestReport) SetStartTime(t time.Time) {
 	r.startTime = t
+}
+
+func (r *TestReport) SetOutput(in ...string) {
+	r.output = append(r.output, in...)
 }
 
 func (r *TestReport) SetEndTime(t time.Time) {
@@ -120,6 +129,7 @@ type StepReport struct {
 	endTime   time.Time
 	reports   []*OperationReport
 	lock      sync.Mutex
+	err       error
 }
 
 func (r *StepReport) SetStartTime(t time.Time) {
@@ -128,6 +138,10 @@ func (r *StepReport) SetStartTime(t time.Time) {
 
 func (r *StepReport) SetEndTime(t time.Time) {
 	r.endTime = t
+}
+
+func (r *StepReport) SetErr(err error) {
+	r.err = err
 }
 
 func (r *StepReport) ForOperation(name string, operationType OperationType) *OperationReport {
@@ -152,4 +166,8 @@ func (r *OperationReport) SetStartTime(t time.Time) {
 
 func (r *OperationReport) SetEndTime(t time.Time) {
 	r.endTime = t
+}
+
+func (r *OperationReport) SetErr(err error) {
+	r.err = err
 }

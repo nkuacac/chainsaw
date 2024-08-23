@@ -46,6 +46,9 @@ func (o operation) execute(ctx context.Context, tc engine.Context) outputs.Outpu
 	handleError := func(err error) {
 		if err != nil {
 			logging.Log(ctx, logging.Internal, logging.ErrorStatus, color.BoldRed, logging.ErrSection(err))
+			if o.report != nil {
+				o.report.SetErr(err)
+			}
 		}
 		if o.continueOnError {
 			failer.Fail(ctx)
@@ -69,6 +72,9 @@ func (o operation) execute(ctx context.Context, tc engine.Context) outputs.Outpu
 		// 	o.operationReport.MarkOperationEnd(err)
 		// }
 		if err != nil {
+			if o.report != nil {
+				o.report.SetErr(err)
+			}
 			// we pass nil in the err argument so that it is not logged in the output
 			handleError(nil)
 		}

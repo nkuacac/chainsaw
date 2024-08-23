@@ -2,12 +2,13 @@ package functions
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/jmespath/go-jmespath"
 	"github.com/kyverno/chainsaw/pkg/engine/functions/tracectx"
 	"github.com/kyverno/chainsaw/pkg/utils/table"
+	"github.com/kyverno/kyverno-json/pkg/engine/template"
 	"io"
 	"k8s.io/apimachinery/pkg/api/resource"
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
@@ -340,7 +341,8 @@ func addSingleItem(item interface{}, path string) []interface{} {
 	name := obj.GetName()
 
 	if path != "" {
-		search, err := jmespath.Search(path, item)
+		path = strings.ReplaceAll(path, "`", "'")
+		search, err := template.Execute(context.TODO(), path, item, nil, template.WithFunctionCaller(InnerCaller()))
 		if err == nil {
 			return []interface{}{name, search}
 		}
