@@ -2,10 +2,12 @@ package mutate
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"reflect"
 
 	"github.com/jmespath-community/go-jmespath/pkg/binding"
+	"github.com/kyverno/chainsaw/pkg/engine/functions"
 	"github.com/kyverno/kyverno-json/pkg/engine/template"
 	reflectutils "github.com/kyverno/kyverno-json/pkg/utils/reflect"
 	"k8s.io/apimachinery/pkg/util/validation/field"
@@ -95,12 +97,30 @@ func (n *scalarNode) mutate(ctx context.Context, path *field.Path, value any, bi
 	expression := parseExpression(ctx, rhs)
 	// we only project if the expression uses the engine syntax
 	// this is to avoid the case where the value is a map and the RHS is a string
-	if expression != nil && expression.Engine != "" {
-		projected, err := template.Execute(ctx, expression.Statement, value, bindings, opts...)
-		if err != nil {
-			return nil, field.InternalError(path, err)
+
+	if expression != nil {
+		if expression.Engine == "json" {
+			var obj map[string]interface{}
+			err := json.Unmarshal([]byte(expression.Statement), &obj)
+			if err != nil {
+				return nil, field.InternalError(path, err)
+			}
+			searched, err := Mutate(ctx, nil, Parse(ctx, obj), nil, bindings, template.WithFunctionCaller(functions.Caller()))
+			if err != nil {
+				return nil, field.InternalError(path, err)
+			}
+			marshal, err := json.Marshal(convert(searched))
+			if err != nil {
+				return nil, err
+			}
+			rhs = string(marshal)
+		} else if expression.Engine != "" {
+			projected, err := template.Execute(ctx, expression.Statement, value, bindings, opts...)
+			if err != nil {
+				return nil, field.InternalError(path, err)
+			}
+			rhs = projected
 		}
-		rhs = projected
 	}
 	return rhs, nil
 }

@@ -4,6 +4,7 @@ import (
 	"context"
 	"reflect"
 	"regexp"
+	"strings"
 )
 
 var (
@@ -23,10 +24,11 @@ func Parse(ctx context.Context, value string) *Expression {
 func parseExpressionRegex(_ context.Context, in string) *Expression {
 	expression := &Expression{}
 	// 1. match escape, if there's no escaping then match engine
-	if match := escapeRegex.FindStringSubmatch(in); match != nil {
+	trimIn := strings.ReplaceAll(in, "\n", "")
+	if match := escapeRegex.FindStringSubmatch(trimIn); match != nil {
 		in = match[1]
 	} else {
-		if match := engineRegex.FindStringSubmatch(in); match != nil {
+		if match := engineRegex.FindStringSubmatch(trimIn); match != nil {
 			expression.Engine = match[1]
 			// account for default engine
 			if expression.Engine == "" {
